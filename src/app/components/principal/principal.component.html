@@ -1,0 +1,18 @@
+<div>
+    <mat-label>Seleccione una categoría </mat-label>
+    <select id="select-menu" [(ngModel)]="selectedOption" 
+    class="bx--text-input" required name="actionSelection"
+    (click)="filtroCategoria()">
+        <option *ngFor="let action of actions" [value]="action.id">{{action.name}}</option>
+    </select>
+</div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-9">
+            <app-product-list></app-product-list>
+        </div>
+        <div class="col-md-3">
+            <app-cart></app-cart>
+        </div>
+    </div>
+</div>
