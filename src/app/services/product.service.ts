@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
   baseUrl = 'https://api.escuelajs.co/api/v1/';
+  
   private products: Product[] = [];
 
   constructor(private httpClient: HttpClient) { }
