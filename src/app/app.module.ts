@@ -29,7 +29,12 @@ import { ComerciosListComponent } from './components/comercios-list/comercios-li
 import { ComerciosItemComponent } from './components/comercios-item/comercios-item.component';
 import { MatTooltipModule} from '@angular/material/tooltip';
 import { PasardatosService } from './services/pasardatos.service';
-
+import { LoginComponent } from './components/login/login.component';
+import { AdmonComponent } from './components/admon/admon.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MenuComponent } from './components/menu/menu.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +49,9 @@ import { PasardatosService } from './services/pasardatos.service';
     PagemprenComponent,
     ComerciosListComponent,
     ComerciosItemComponent,
+    LoginComponent,
+    AdmonComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +69,11 @@ import { PasardatosService } from './services/pasardatos.service';
     MatButtonModule,
     MatTooltipModule,
     FormsModule,
-    ReactiveFormsModule  
+    ReactiveFormsModule,
+    MatButtonModule,  
+    MatMenuModule,
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [PasardatosService],
   bootstrap: [AppComponent],
