@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product';
-import { ProductService } from 'src/app/services/product.service';
+import { Comercio } from 'src/app/models/comercios';
+import { ComerciosService } from 'src/app/services/comercios.service';
 
 @Component({
   selector: 'app-principal',
@@ -8,25 +8,11 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./principal.component.css']
 })
 export class PrincipalComponent implements OnInit {
-  products: Product[] = [];
+  comercios: Comercio[] = [];
   constructor(
-    private productService: ProductService
+    private comerciosService: ComerciosService
   ) { }
 
   ngOnInit(): void {
-    this.filtroCategoria();
   }
-
-  filtroCategoria(){
-    this.productService.getCategoria().subscribe((data)=>{
-      return this.products=data;
-    })
-  }
-
-  selectedOption = 0;
-  actions = [{ id: 0, name: '' },
-  { id: 1, name: 'Limpieza' },
-  { id: 2, name: 'Accesorios' },
-  { id: 3, name: 'Servicios'}];
-
 }

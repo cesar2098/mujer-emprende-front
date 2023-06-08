@@ -21,9 +21,14 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { PagemprenComponent } from './components/pagempren/pagempren.component';
+import { ComerciosListComponent } from './components/comercios-list/comercios-list.component';
+import { ComerciosItemComponent } from './components/comercios-item/comercios-item.component';
+import { MatTooltipModule} from '@angular/material/tooltip';
+import { PasardatosService } from './services/pasardatos.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,10 @@ import { MatButtonModule } from '@angular/material/button';
     ProductItemComponent,
     CartComponent,
     CartItemComponent,
-    ModalComponent
+    ModalComponent,
+    PagemprenComponent,
+    ComerciosListComponent,
+    ComerciosItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,10 +58,14 @@ import { MatButtonModule } from '@angular/material/button';
     NoopAnimationsModule, 
     FormsModule,
     MatInputModule,
-    MatButtonModule,     
+    MatButtonModule,
+    MatTooltipModule,
+    FormsModule,
+    ReactiveFormsModule  
   ],
-  providers: [],
+  providers: [PasardatosService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {
+ }

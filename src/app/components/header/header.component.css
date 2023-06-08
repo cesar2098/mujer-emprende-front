@@ -28,3 +28,10 @@
     font-size: 0.8rem;
     text-align: center;
 }
+
+.space {
+    width: 6px;
+    height: auto;
+    display: inline-block;
+  }
+  

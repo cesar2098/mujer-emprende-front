@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
+import { PasardatosService } from 'src/app/services/pasardatos.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private pasardatosservice: PasardatosService,
   ) { }
 
   ngOnInit(): void {
@@ -20,7 +22,9 @@ export class ProductListComponent implements OnInit {
   }
 
   loadProducts(){
-    this.productService.getProduct().subscribe((data)=>{
+    console.log('DATO SETEADO DESDE COMERCIOS');
+    console.log(this.pasardatosservice.idComer);
+    this.productService.getProduct(this.pasardatosservice.idComer).subscribe((data)=>{
       return this.products=data;
     })
   }

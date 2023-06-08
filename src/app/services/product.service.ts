@@ -8,18 +8,14 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
   baseUrl = 'https://api.escuelajs.co/api/v1/';
-  
+
   private products: Product[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
-  getProduct(): Observable<Product[]> {
-    const response = this.httpClient.get<Product[]>(`${this.baseUrl}products`);
-    return response;
-  }
-
-  getCategoria(): Observable<Product[]> {
-    const response = this.httpClient.get<Product[]>(`${this.baseUrl}categories/1/products`);
+  getProduct(idCom:number): Observable<Product[]> {
+    console.log('id: ', idCom)
+    const response = this.httpClient.get<Product[]>(`${this.baseUrl}categories/${idCom}/products`);
     return response;
   }
 }
