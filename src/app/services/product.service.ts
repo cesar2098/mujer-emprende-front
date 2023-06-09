@@ -14,8 +14,13 @@ export class ProductService {
   constructor(private httpClient: HttpClient) { }
 
   getProduct(idCom:number): Observable<Product[]> {
-    console.log('id: ', idCom)
+    // console.log('id: ', idCom)
     const response = this.httpClient.get<Product[]>(`${this.baseUrl}${idCom}`);
+    response.pipe().subscribe(
+      (response: any) => {
+        this.products = response.respuesta;
+      }
+    );    
     return response;
   }
 }

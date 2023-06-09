@@ -11,8 +11,15 @@ export class ComerciosService {
   private comercio: Comercio[] = [];
   constructor(private httpClient: HttpClient) { }
 
-  getComercio(): Observable<Comercio[]> {
-    const response = this.httpClient.get<Comercio[]>(`${this.baseUrl}`);
+
+  getComercio(): Observable<any> {
+    const response = this.httpClient.get(`${this.baseUrl}`);
+    response.pipe().subscribe(
+      (response: any) => {
+        this.comercio = response.respuesta;
+      }
+    );
+
     return response;
   }
 }

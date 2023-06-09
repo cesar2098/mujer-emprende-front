@@ -11,6 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
+  respuesta: any;
 
   constructor(
     private productService: ProductService,
@@ -22,10 +23,12 @@ export class ProductListComponent implements OnInit {
   }
 
   loadProducts(){
-    console.log('DATO SETEADO DESDE COMERCIOS');
-    console.log(this.pasardatosservice.idComer);
-    this.productService.getProduct(this.pasardatosservice.idComer).subscribe((data)=>{
-      return this.products=data;
+    // console.log('DATO SETEADO DESDE COMERCIOS');
+    // console.log(this.pasardatosservice.idComer);
+      this.productService.getProduct(this.pasardatosservice.idComer).subscribe((data)=>{
+      this.respuesta = data;
+      this.products = this.respuesta.respuesta;
+      // return this.products=data;
     })
   }
 }
