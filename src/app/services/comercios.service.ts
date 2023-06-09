@@ -7,12 +7,12 @@ import { Comercio } from '../models/comercios';
   providedIn: 'root'
 })
 export class ComerciosService {
-  baseUrl = 'https://api.escuelajs.co/api/v1/';
+  baseUrl = 'http://localhost:8080/comercio/comercio/search';
   private comercio: Comercio[] = [];
   constructor(private httpClient: HttpClient) { }
 
   getComercio(): Observable<Comercio[]> {
-    const response = this.httpClient.get<Comercio[]>(`${this.baseUrl}products`);
+    const response = this.httpClient.get<Comercio[]>(`${this.baseUrl}`);
     return response;
   }
 }

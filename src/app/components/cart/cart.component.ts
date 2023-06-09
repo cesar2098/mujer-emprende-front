@@ -41,7 +41,7 @@ export class CartComponent implements OnInit {
     this.messageService.getMessage().subscribe((product: Product) => {
       let exists = false;
       this.cartItems.forEach(item => {
-        if (item.productId === product.id) {
+        if (item.productId === product.idCatalogos) {
           exists = true;
           item.qty++;
         }

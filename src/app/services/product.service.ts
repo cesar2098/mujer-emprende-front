@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  baseUrl = 'https://api.escuelajs.co/api/v1/';
+  baseUrl = 'http://localhost:8080/comercio/catalogos/productcomercio/';
 
   private products: Product[] = [];
 
@@ -15,7 +15,7 @@ export class ProductService {
 
   getProduct(idCom:number): Observable<Product[]> {
     console.log('id: ', idCom)
-    const response = this.httpClient.get<Product[]>(`${this.baseUrl}categories/${idCom}/products`);
+    const response = this.httpClient.get<Product[]>(`${this.baseUrl}${idCom}`);
     return response;
   }
 }

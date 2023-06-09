@@ -1,15 +1,18 @@
 export class Comercio {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    images: string[];
+    idComercio: number;
+    nombre: string;
+    descripcion: string;
+    logo: string[];
+    activo: number;
+    created:Date;
+    
 
-    constructor(id: number, title: string, description: string, price: number, images: string[]) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.images = images;
+    constructor(idComercio: number, nombre: string, descripcion: string, logo: string[], activo: number, created:Date) {
+        this.idComercio = idComercio;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.logo = logo;
+        this.activo = activo;
+        this.created = created;        
     }
 }
