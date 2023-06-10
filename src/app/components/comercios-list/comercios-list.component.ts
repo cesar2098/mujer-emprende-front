@@ -9,6 +9,8 @@ import { ComerciosService } from 'src/app/services/comercios.service';
 })
 export class ComerciosListComponent implements OnInit {
   comercios: Comercio[] = [];
+  respuesta: any;
+
   constructor(
     private comercioService: ComerciosService
   ) { }
@@ -18,8 +20,9 @@ export class ComerciosListComponent implements OnInit {
   }
 
   loadComercios() {
-    this.comercioService.getComercio().subscribe((data) => {
-      return this.comercios = data;
+    this.comercioService.getComercio().subscribe((response) => {
+      this.respuesta = response;
+      this.comercios = this.respuesta.respuesta;
     })
   }
 }

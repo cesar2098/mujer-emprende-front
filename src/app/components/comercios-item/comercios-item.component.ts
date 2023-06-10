@@ -26,8 +26,7 @@ export class ComerciosItemComponent implements OnInit {
 
   ingresoComercio(url:string): void {
     this.pasardatosservice.clearIdComercio();
-    //this.pasardatosservice.addIdComercio(this.comercio.id);    
-    this.pasardatosservice.addIdComercio(2);
+    this.pasardatosservice.addIdComercio(this.comercio.idComercio);    
     this.router.navigate([url]);
   }
 

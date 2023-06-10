@@ -13,6 +13,6 @@ export class Comercio {
         this.descripcion = descripcion;
         this.logo = logo;
         this.activo = activo;
-        this.created = created;        
+        this.created = created;
     }
 }
