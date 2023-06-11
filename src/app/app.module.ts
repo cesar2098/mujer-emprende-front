@@ -30,6 +30,9 @@ import { DialogModule } from 'primeng/dialog';
 import { TabViewModule } from 'primeng/tabview';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { DialogService } from 'primeng/dynamicdialog';
+import { MessagesModule } from 'primeng/messages';
+import { MessageService } from 'primeng/api';
 
 //External
 import { NgxPayPalModule } from 'ngx-paypal';
@@ -57,6 +60,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { FormProductoComponent } from './components/form-producto/form-producto.component';
 import { FormUsuarioComponent } from './components/form-usuario/form-usuario.component';
 import { FormComercioComponent } from './components/form-comercio/form-comercio.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +82,7 @@ import { FormComercioComponent } from './components/form-comercio/form-comercio.
     FormProductoComponent,
     FormUsuarioComponent,
     FormComercioComponent,
+    EditProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,9 +112,11 @@ import { FormComercioComponent } from './components/form-comercio/form-comercio.
     TabViewModule,
     ButtonModule,
     InputTextareaModule,
-    InputNumberModule
+    InputNumberModule,
+    DialogModule,
+    MessagesModule
   ],
-  providers: [PasardatosService],
+  providers: [PasardatosService,DialogService,MessageService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

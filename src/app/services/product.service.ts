@@ -24,6 +24,17 @@ export class ProductService {
     return response;
   }
 
+  getProductById(idProducto:number): Observable<Product[]> {
+    // console.log('id: ', idCom)
+    const response = this.httpClient.get<Product[]>(`${this.baseUrl}/search/${idProducto}`);
+    response.pipe().subscribe(
+      (response: any) => {
+        this.products = response.respuesta;
+      }
+    );    
+    return response;
+  }
+
   saveProducto(producto: Product): Observable<any> {
     const response = this.httpClient.post(`${this.baseUrl}/save`, producto);
     response.pipe().subscribe(

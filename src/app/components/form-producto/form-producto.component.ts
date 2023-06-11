@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Product } from 'src/app/models/product';
-import { PasardatosService } from 'src/app/services/pasardatos.service';
+import { DialogService } from 'primeng/dynamicdialog';
 import { ProductService } from 'src/app/services/product.service';
+import { EditProductComponent } from '../edit-product/edit-product.component';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-form-producto',
@@ -15,7 +17,12 @@ export class FormProductoComponent implements OnInit {
   formulario: FormGroup;
   respuesta: any;
 
-  constructor(private fb: FormBuilder, private productoService: ProductService, private pasardatosservice: PasardatosService) { 
+  constructor(
+    private fb: FormBuilder, 
+    private productoService: ProductService, 
+    private dialogService: DialogService,
+    public messageService: MessageService,
+    ) { 
     this.formulario = this.fb.group({
       nombre: '',
       descripcion: '',
@@ -48,11 +55,15 @@ export class FormProductoComponent implements OnInit {
   loadProducts(){
     // console.log('DATO SETEADO DESDE COMERCIOS');
     // console.log(this.pasardatosservice.idComer);
-      this.productoService.getProduct(this.pasardatosservice.idComer).subscribe((data)=>{
+      this.productoService.getProduct(1).subscribe((data)=>{
       this.respuesta = data;
       this.products = this.respuesta.respuesta;
       // return this.products=data;
     })
+  }
+
+  refresh(){
+    this.loadProducts();
   }
 
   submit() {  
@@ -60,8 +71,27 @@ export class FormProductoComponent implements OnInit {
     this.productoService.saveProducto(this.formGroup.value).subscribe(
       (response: any) => {
         console.log(response);
+        this.messageService.add({severity: 'success', summary: 'Éxito', detail: 'Producto guardado correctamente'});
       }
     );
+  }
+
+  openEditarProductoDialog(producto: Product) {
+    const dialogRef = this.dialogService.open(EditProductComponent, {
+      //header: 'Editar Producto',
+      width: '70%',
+      data: {
+        producto: producto
+      }
+    });
+  
+    dialogRef.onClose.subscribe((result) => {
+      if (result) {
+        console.log('Producto editado' + result);
+        this.messageService.add({severity: 'success', summary: 'Éxito', detail: 'Producto editado correctamente'});
+        // Aquí puedes realizar acciones después de que se cierre el diálogo y se haya guardado la edición del producto
+      }
+    });
   }
 
 }

@@ -39,16 +39,20 @@
                 </div>
             </div>
             <div  class="pt-3">
-                <p-button label="Agregar" id="agregar" (click)="submit();"></p-button>
+                <p-button  label="Agregar" id="agregar" (click)="submit();"></p-button>
             </div>           
         </div>
     </form>
+    <div class="container pt-3">
+        <p-messages></p-messages>
+        <!-- Resto del contenido del formulario -->
+    </div>
     <div class="pt-3">
         <p-table [value]="products" [tableStyle]="{'min-width': '60rem'}">
             <ng-template pTemplate="caption">
                 <div class="flex align-items-center justify-content-between">
                     Productos del comercio
-                    <p-button icon="pi pi-refresh"></p-button>
+                    <p-button icon="pi pi-refresh" (click)="refresh()"></p-button>
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
@@ -69,7 +73,7 @@
                     <td><img [src]="products.imagen" [alt]="products.nombre" width="100" class="shadow-4" /></td>                    
                     <td>{{ products.activo === 1 ? 'activo' : 'desactivado' }}</td>                   
                     <td>
-                        <button pButton class="p-button p-button-sm" >Editar</button>
+                        <button pButton class="p-button p-button-sm" (click)="openEditarProductoDialog(products)">Editar</button>
                         <button pButton class="p-button p-button-sm" >Desactivar</button>
                     </td>
                 </tr>
