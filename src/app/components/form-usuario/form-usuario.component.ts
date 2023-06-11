@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Comercio } from 'src/app/models/comercios';
 import { Usuario } from 'src/app/models/usuario';
+import { ComerciosService } from 'src/app/services/comercios.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-form-usuario',
@@ -12,7 +14,7 @@ export class FormUsuarioComponent implements OnInit {
 
   formulario: FormGroup;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private usuarioService: UsuariosService) { 
     this.formulario = this.fb.group({
       nombres: '',
       apellidos: '',
@@ -35,7 +37,7 @@ export class FormUsuarioComponent implements OnInit {
     password: '',
     activo: 1,
     created: new Date(),
-    idComercio: new Comercio(0, '', '', '', 1, new Date())
+    idComercio: new Comercio(1, '', '', '', 1, new Date())
   };
 
   ngOnInit(): void {
@@ -57,6 +59,11 @@ export class FormUsuarioComponent implements OnInit {
 
   submit() {  
     console.log(this.formGroup.value);
+    this.usuarioService.saveUsuario(this.formGroup.value).subscribe(
+      (response: any) => {
+        console.log(response);
+      }
+    );
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-form-producto',
@@ -11,7 +12,7 @@ export class FormProductoComponent implements OnInit {
 
   formulario: FormGroup;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private productoService: ProductService) { 
     this.formulario = this.fb.group({
       nombre: '',
       descripcion: '',
@@ -40,6 +41,11 @@ export class FormProductoComponent implements OnInit {
 
   submit() {  
     console.log(this.formGroup.value);
+    this.productoService.saveProducto(this.formGroup.value).subscribe(
+      (response: any) => {
+        console.log(response);
+      }
+    );
   }
 
 }

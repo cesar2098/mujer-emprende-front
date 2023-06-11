@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Comercio } from 'src/app/models/comercios';
+import { ComerciosService } from 'src/app/services/comercios.service';
 
 @Component({
   selector: 'app-form-comercio',
@@ -11,7 +12,7 @@ export class FormComercioComponent implements OnInit {
 
   formulario: FormGroup;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private comercioService: ComerciosService) { 
     this.formulario = this.fb.group({
       nombre: '',
       descripcion: '',
@@ -40,6 +41,11 @@ export class FormComercioComponent implements OnInit {
 
   submit() {  
     console.log(this.formGroup.value);
+    this.comercioService.saveComercio(this.formGroup.value).subscribe(
+      (response: any) => {
+        console.log(response);
+      }
+    );
   }
 
 }
