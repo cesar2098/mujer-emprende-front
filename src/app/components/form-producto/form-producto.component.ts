@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Product } from 'src/app/models/product';
+import { PasardatosService } from 'src/app/services/pasardatos.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -10,9 +11,11 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class FormProductoComponent implements OnInit {
 
+  products: any[] = [];
   formulario: FormGroup;
+  respuesta: any;
 
-  constructor(private fb: FormBuilder, private productoService: ProductService) { 
+  constructor(private fb: FormBuilder, private productoService: ProductService, private pasardatosservice: PasardatosService) { 
     this.formulario = this.fb.group({
       nombre: '',
       descripcion: '',
@@ -26,6 +29,7 @@ export class FormProductoComponent implements OnInit {
     descripcion: '',
     precio: 0,
     imagen: [],
+    activo: 1
   };
 
   //Creación de formulario
@@ -33,10 +37,22 @@ export class FormProductoComponent implements OnInit {
     nombre: [{ value: this.producto.nombre , disabled: false }],
     descripcion: [{ value: this.producto.descripcion , disabled: false }],
     precio: [{ value: this.producto.precio , disabled: false }],
-    imagen: [{ value: this.producto.imagen , disabled: false }]    
+    imagen: [{ value: this.producto.imagen , disabled: false }],
+    activo: [{ value: this.producto.activo , disabled: false }]  
   });
 
   ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  loadProducts(){
+    // console.log('DATO SETEADO DESDE COMERCIOS');
+    // console.log(this.pasardatosservice.idComer);
+      this.productoService.getProduct(this.pasardatosservice.idComer).subscribe((data)=>{
+      this.respuesta = data;
+      this.products = this.respuesta.respuesta;
+      // return this.products=data;
+    })
   }
 
   submit() {  

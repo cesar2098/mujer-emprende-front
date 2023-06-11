@@ -33,4 +33,14 @@ export class ProductService {
     );
     return response;
   }
+
+  updateProducto(producto: Product): Observable<any> {
+    const response = this.httpClient.post(`${this.baseUrl}/update/1`, producto);
+    response.pipe().subscribe(
+      (response: any) => {
+        this.products = response.respuesta;
+      }
+    );
+    return response;
+  }
 }

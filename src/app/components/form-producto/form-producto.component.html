@@ -43,4 +43,42 @@
             </div>           
         </div>
     </form>
+    <div class="pt-3">
+        <p-table [value]="products" [tableStyle]="{'min-width': '60rem'}">
+            <ng-template pTemplate="caption">
+                <div class="flex align-items-center justify-content-between">
+                    Productos del comercio
+                    <p-button icon="pi pi-refresh"></p-button>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
+                    <th>Activo</th>
+                    <th>Acciones</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-products>
+                <tr>
+                    <td>{{products.nombre}}</td>
+                    <td>{{products.descripcion}}</td>
+                    <td>{{products.precio | currency:'USD'}}</td>
+                    <td><img [src]="products.imagen" [alt]="products.nombre" width="100" class="shadow-4" /></td>                    
+                    <td>{{ products.activo === 1 ? 'activo' : 'desactivado' }}</td>                   
+                    <td>
+                        <button pButton class="p-button p-button-sm" >Editar</button>
+                        <button pButton class="p-button p-button-sm" >Desactivar</button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <div class="flex align-items-center justify-content-between">
+                    Hay un total de {{products ? products.length : 0 }} productos.
+                </div>
+            </ng-template>
+        </p-table>
+    </div>
 </div>
