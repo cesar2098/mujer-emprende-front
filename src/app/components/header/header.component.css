@@ -7,6 +7,15 @@
     color: white;
 }
 
+app-menu {
+    display: block;
+    background-color: #C7CDDA;
+    padding: 0rem;
+    border-radius: 5px;
+    color: white;
+    height: 100px;
+  }
+
 .navbar-cart {
     position: relative;
     margin-right: 1rem;

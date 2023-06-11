@@ -12,6 +12,25 @@ import { CartComponent } from './components/cart/cart.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { ModalComponent } from './components/modal/modal.component';
 
+//Import PrimeNG
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { ButtonModule } from 'primeng/button';;
+import { CardModule } from 'primeng/card';
+import { ImageModule } from 'primeng/image';
+import { InputTextModule } from 'primeng/inputtext';
+import { SliderModule } from 'primeng/slider';
+import { Table, TableModule } from 'primeng/table';
+import { CalendarModule } from 'primeng/calendar';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { MenubarModule } from 'primeng/menubar';
+import { RippleModule } from 'primeng/ripple';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { DialogModule } from 'primeng/dialog';
+import { TabViewModule } from 'primeng/tabview';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputNumberModule } from 'primeng/inputnumber';
+
 //External
 import { NgxPayPalModule } from 'ngx-paypal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -35,6 +54,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MenuComponent } from './components/menu/menu.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { FormProductoComponent } from './components/form-producto/form-producto.component';
+import { FormUsuarioComponent } from './components/form-usuario/form-usuario.component';
+import { FormComercioComponent } from './components/form-comercio/form-comercio.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +74,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     LoginComponent,
     AdmonComponent,
     MenuComponent,
+    FormProductoComponent,
+    FormUsuarioComponent,
+    FormComercioComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +98,15 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatButtonModule,  
     MatMenuModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    InputTextModule,
+    TableModule,
+    CalendarModule,
+    ImageModule,
+    TabViewModule,
+    ButtonModule,
+    InputTextareaModule,
+    InputNumberModule
   ],
   providers: [PasardatosService],
   bootstrap: [AppComponent],
