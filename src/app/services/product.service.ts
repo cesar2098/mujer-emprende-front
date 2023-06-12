@@ -20,7 +20,7 @@ export class ProductService {
       (response: any) => {
         this.products = response.respuesta;
       }
-    );    
+    );   
     return response;
   }
 }
