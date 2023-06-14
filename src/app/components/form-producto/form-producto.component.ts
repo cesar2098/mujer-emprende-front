@@ -112,4 +112,13 @@ export class FormProductoComponent implements OnInit {
     this.router.navigate([url]);
   }
 
+  inactivar() {  
+    console.log(this.formGroup.value);
+    this.productoService.inactivarProducto(this.formGroup.value).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.messageService.add({severity: 'success', summary: 'Éxito', detail: 'Producto inactivado correctamente'});
+      }
+    );
+  }
 }

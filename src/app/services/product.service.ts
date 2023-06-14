@@ -55,4 +55,14 @@ export class ProductService {
     );
     return response;
   }
+
+  inactivarProducto(producto: Product): Observable<any> {
+    const response = this.httpClient.post(`${this.baseUrl}/inactivar/${producto.idCatalogos}`, producto);
+    response.pipe().subscribe(
+      (response: any) => {
+        this.products = response.respuesta;
+      }
+    );
+    return response;
+  }
 }
