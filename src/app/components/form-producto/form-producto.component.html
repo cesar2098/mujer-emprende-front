@@ -77,7 +77,7 @@
                     <td>{{ products.activo === 1 ? 'activo' : 'desactivado' }}</td>                   
                     <td>
                         <button class="btn btn-outline-primary " (click)="openEditarProductoDialog(products)">Modifica</button>
-                        <button class="btn btn-outline-primary mt-2" >Inactivar</button>
+                        <button class="btn btn-outline-primary mt-2" (click)="desactivarProducto(products)">Inactivar</button>
                     </td>
                 </tr>
             </ng-template>
