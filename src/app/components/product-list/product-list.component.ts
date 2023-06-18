@@ -24,7 +24,7 @@ export class ProductListComponent implements OnInit {
 
   loadProducts(){
     // console.log('DATO SETEADO DESDE COMERCIOS');
-    // console.log(this.pasardatosservice.idComer);
+    console.log(this.pasardatosservice.idComer);
       this.productService.getProduct(this.pasardatosservice.idComer).subscribe((data)=>{
       this.respuesta = data;
       this.products = this.respuesta.respuesta;

@@ -2,18 +2,23 @@ import { Injectable } from "@angular/core";
 import { Usuario } from "../models/usuario";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { PasardatosService } from "./pasardatos.service";
 
 @Injectable({
     providedIn: 'root'
   })
   export class UsuariosService {
-    baseUrl = 'http://localhost:8080/comercio/usuarios';
+    baseUrl = '';
     private usuario: Usuario[] = [];
-    constructor(private httpClient: HttpClient) { }
+    constructor(
+      private httpClient: HttpClient,
+      public pasardatosservice: PasardatosService
+      ) { }
   
   
     getUsuario(id: number): Observable<any> {
-      const response = this.httpClient.get(`${this.baseUrl + "/search"}${id}`);
+      this.llenarbaseUrl();
+      const response = this.httpClient.get(`${this.baseUrl + "/comercio/usuarios/search"}${id}`);
       response.pipe().subscribe(
         (response: any) => {
           this.usuario = response.respuesta;
@@ -23,12 +28,17 @@ import { Observable } from "rxjs";
     }
   
     saveUsuario(usuario: Usuario): Observable<any> {
-      const response = this.httpClient.post(`${this.baseUrl + "/save"}`, usuario);
+      this.llenarbaseUrl();
+      const response = this.httpClient.post(`${this.baseUrl + "/comercio/usuarios/save"}`, usuario);
       response.pipe().subscribe(
         (response: any) => {
           this.usuario = response.respuesta;
         }
       );
       return response;
+    }
+
+    llenarbaseUrl(){
+      this.baseUrl = this.pasardatosservice.urlDocker;
     }
   }

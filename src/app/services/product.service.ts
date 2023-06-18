@@ -2,20 +2,24 @@ import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { PasardatosService } from './pasardatos.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  baseUrl = 'http://localhost:8080/comercio/catalogos';
+  baseUrl = '';
 
   private products: Product[] = [];
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    public pasardatosservice: PasardatosService
+    ) { }
 
   getProduct(idCom:number): Observable<Product[]> {
-    // console.log('id: ', idCom)
-    const response = this.httpClient.get<Product[]>(`${this.baseUrl}/productcomercio/${idCom}`);
+    this.llenarbaseUrl();
+    const response = this.httpClient.get<Product[]>(`${this.baseUrl}/comercio/catalogos/productcomercio/${idCom}`);
     response.pipe().subscribe(
       (response: any) => {
         this.products = response.respuesta;
@@ -25,8 +29,8 @@ export class ProductService {
   }
 
   getProductById(idProducto:number): Observable<Product[]> {
-    // console.log('id: ', idCom)
-    const response = this.httpClient.get<Product[]>(`${this.baseUrl}/search/${idProducto}`);
+    this.llenarbaseUrl();
+    const response = this.httpClient.get<Product[]>(`${this.baseUrl}/comercio/catalogos/search/${idProducto}`);
     response.pipe().subscribe(
       (response: any) => {
         this.products = response.respuesta;
@@ -36,7 +40,8 @@ export class ProductService {
   }
 
   saveProducto(producto: Product): Observable<any> {
-    const response = this.httpClient.post(`${this.baseUrl}/save`, producto);
+    this.llenarbaseUrl();
+    const response = this.httpClient.post(`${this.baseUrl}/comercio/catalogos/save`, producto);
     response.pipe().subscribe(
       (response: any) => {
         this.products = response.respuesta;
@@ -46,7 +51,8 @@ export class ProductService {
   }
 
   updateProducto(producto: Product): Observable<any> {
-    const response = this.httpClient.post(`${this.baseUrl}/update/1`, producto);
+    this.llenarbaseUrl();
+    const response = this.httpClient.post(`${this.baseUrl}/comercio/catalogos/update/1`, producto);
     response.pipe().subscribe(
       (response: any) => {
         this.products = response.respuesta;
@@ -56,12 +62,17 @@ export class ProductService {
   }
 
   inactivarProducto(producto: Product): Observable<any> {
-    const response = this.httpClient.post(`${this.baseUrl}/inactivar/${producto.idCatalogos}`, producto);
+    this.llenarbaseUrl();
+    const response = this.httpClient.post(`${this.baseUrl}/comercio/catalogos/inactivar/${producto.idCatalogos}`, producto);
     response.pipe().subscribe(
       (response: any) => {
         this.products = response.respuesta;
       }
     );
     return response;
+  }
+
+  llenarbaseUrl(){
+    this.baseUrl = this.pasardatosservice.urlDocker;
   }
 }

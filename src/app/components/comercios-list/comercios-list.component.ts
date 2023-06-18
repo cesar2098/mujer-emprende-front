@@ -10,7 +10,7 @@ import { ComerciosService } from 'src/app/services/comercios.service';
 export class ComerciosListComponent implements OnInit {
   comercios: Comercio[] = [];
   respuesta: any;
-
+  
   constructor(
     private comercioService: ComerciosService
   ) { }

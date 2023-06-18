@@ -6,13 +6,14 @@ import { Injectable } from '@angular/core';
 export class PasardatosService {
   messages: string[] = [];
   idComer: number = 0;
+  urlDocker: string = "";
 
   add(message: string) {
     this.messages.push(message);
   }
 
-  addIdComercio(id:number) {
-    this.idComer=id;
+  addIdComercio(id: number) {
+    this.idComer = id;
   }
 
   clear() {
@@ -20,7 +21,11 @@ export class PasardatosService {
   }
 
   clearIdComercio() {
-    this.idComer=0;
+    this.idComer = 0;
   }
   constructor() { }
+
+  iniciarUrl(urlArch: string) {
+    this.urlDocker = urlArch;
+  }
 }
