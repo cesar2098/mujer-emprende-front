@@ -50,9 +50,15 @@ export class ProductService {
     return response;
   }
 
+<<<<<<< HEAD
   updateProducto(producto: Product): Observable<any> {
     this.llenarbaseUrl();
     const response = this.httpClient.post(`${this.baseUrl}/comercio/catalogos/update/1`, producto);
+=======
+  updateProducto(producto: Product, codigo: number): Observable<any> {
+    const response = this.httpClient.post(`${this.baseUrl}/update/${codigo}`, producto);
+    console.log('response: ', response);
+>>>>>>> e9aa6b96e892d5b8c2767fdeed9c6a1894edbbf8
     response.pipe().subscribe(
       (response: any) => {
         this.products = response.respuesta;

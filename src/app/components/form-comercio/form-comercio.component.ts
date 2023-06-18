@@ -20,7 +20,9 @@ export class FormComercioComponent implements OnInit {
     this.formulario = this.fb.group({
       nombre: '',
       descripcion: '',
-      logo: ''
+      logo: '',
+      activo: 1,
+      created: new Date()
     });
   }
 

@@ -33,6 +33,7 @@ export class ComerciosService {
     response.pipe().subscribe(
       (response: any) => {
         this.comercio = response.respuesta;
+        console.log(this.comercio);
       }
     );
     return response;

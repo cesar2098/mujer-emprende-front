@@ -80,6 +80,17 @@ export class FormProductoComponent implements OnInit {
     );
   }
 
+  desactivarProducto(producto: Product) {
+    console.log(producto);
+    producto.activo = 0; 
+    this.productoService.updateProducto(producto, producto.idCatalogos).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.messageService.add({severity: 'success', summary: 'Éxito', detail: 'Producto desactivado correctamente'});
+      }
+    );
+  }
+
   openEditarProductoDialog(producto: Product) {
     const dialogRef = this.dialogService.open(EditProductComponent, {
       //header: 'Editar Producto',
@@ -87,8 +98,7 @@ export class FormProductoComponent implements OnInit {
       data: {
         producto: producto
       }
-    });
-  
+    });  
     dialogRef.onClose.subscribe((result) => {
       if (result) {
         console.log('Producto editado' + result);
